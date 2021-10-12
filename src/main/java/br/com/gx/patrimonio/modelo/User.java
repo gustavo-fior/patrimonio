@@ -93,6 +93,10 @@ public class User implements UserDetails {
 	public void setImoveis(List<Imovel> imoveis) {
 		this.imoveis = imoveis;
 	}
+	
+	public void adicionarPerfil(Perfil perfil) {
+		this.perfis.add(perfil);
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

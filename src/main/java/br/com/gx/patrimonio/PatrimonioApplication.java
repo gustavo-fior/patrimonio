@@ -10,4 +10,4 @@ public class PatrimonioApplication {
 		SpringApplication.run(PatrimonioApplication.class, args);
 	}
 
-}
+} 

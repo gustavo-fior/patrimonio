@@ -51,7 +51,7 @@ public class CadastroForm {
 		user.setEmail(this.email);
 		user.setUsername(this.username);
 		user.setPassword(encoder.encode(this.password));
-
+		
 		return user;
 		
 	}

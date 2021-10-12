@@ -12,7 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.gx.patrimonio.controller.dto.CadastroForm;
 import br.com.gx.patrimonio.controller.validacao.UsuarioValidacao;
+import br.com.gx.patrimonio.modelo.Perfil;
 import br.com.gx.patrimonio.modelo.User;
+import br.com.gx.patrimonio.repository.PerfilRepository;
 import br.com.gx.patrimonio.repository.UserRepository;
 
 @Controller
@@ -21,6 +23,9 @@ public class SignUpController {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private PerfilRepository perfilRepository;
 
 	@Autowired
 	private UsuarioValidacao usuarioValidacao;
@@ -33,7 +38,10 @@ public class SignUpController {
 	@PostMapping
 	public ModelAndView signUpCadastro(@Valid CadastroForm form, BindingResult result) {
 
+		Perfil userPerfil = perfilRepository.findByNome("ROLE_USER");
+		
 		User user = form.toUser(form);
+		user.adicionarPerfil(userPerfil);
 
 		if (!result.hasErrors() && usuarioValidacao.isEmailUnico(user) && usuarioValidacao.isUsernameUnico(user)) {
 
