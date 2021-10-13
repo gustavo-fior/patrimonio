@@ -28,6 +28,7 @@ public class Imovel {
 	private Endereco endereco;
 	private String inquilino;
 	private BigDecimal aluguel;
+	private String linkImagem;
 
 	@Enumerated(EnumType.STRING)
 	private StatusImovel status;
@@ -78,6 +79,14 @@ public class Imovel {
 
 	public void setStatus(StatusImovel status) {
 		this.status = status;
+	}
+
+	public String getLinkImagem() {
+		return linkImagem;
+	}
+
+	public void setLinkImagem(String linkImagem) {
+		this.linkImagem = linkImagem;
 	}
 
 }

@@ -1,5 +1,6 @@
 package br.com.gx.patrimonio.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -45,7 +46,7 @@ public class UsersController {
 		imovel.setUser(user.get());
 
 		imovelRepository.save(imovel);
-		
+
 		return new ModelAndView("/users/home");
 	}
 
@@ -53,6 +54,23 @@ public class UsersController {
 	public ModelAndView novo(ImovelForm form) {
 
 		return new ModelAndView("users/novo");
+
+	}
+
+	@GetMapping("/home")
+	public ModelAndView home() {
+
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		//PageRequest pageable = PageRequest.of(0, 10);
+		
+		Optional<User> user = userRepository.findByUsername(username);
+		List<Imovel> imoveis = imovelRepository.findByUserOrderByAluguelDesc(user.get());
+		
+		ModelAndView mv = new ModelAndView("/users/home");
+		mv.addObject("imoveis", imoveis);
+		
+		return mv;
 
 	}
 }

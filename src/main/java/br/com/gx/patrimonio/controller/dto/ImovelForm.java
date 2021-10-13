@@ -30,6 +30,8 @@ public class ImovelForm {
 	@Pattern(regexp = "^\\d+(\\.\\d+{2})?$")
 	private String aluguel;
 
+	private String linkImagem;
+
 	public String getRua() {
 		return rua;
 	}
@@ -70,16 +72,25 @@ public class ImovelForm {
 		this.aluguel = aluguel;
 	}
 
+	public String getLinkImagem() {
+		return linkImagem;
+	}
+
+	public void setLinkImagem(String linkImagem) {
+		this.linkImagem = linkImagem;
+	}
+
 	public Imovel toImovel() {
 
 		Imovel imovel = new Imovel();
 
 		Endereco endereco = new Endereco(this.rua, this.numero, this.cep);
 
-		imovel.setAluguel(new BigDecimal(aluguel));
+		imovel.setAluguel(new BigDecimal(this.aluguel));
 		imovel.setInquilino(this.inquilino);
 		imovel.setStatus(StatusImovel.ALUGADO);
 		imovel.setEndereco(endereco);
+		imovel.setLinkImagem(this.linkImagem);
 
 		return imovel;
 

@@ -10,7 +10,7 @@
 			<form method="post" th:object="${imovelForm}" th:action="@{/users/novo}" class="card-body">
 				
 				<div class="form-group">
-					<label for="cep">CEP (apenas números)</label> 
+					<label for="cep">CEP* (apenas números)</label> 
 					<input th:field="*{cep}" class="form-control" placeholder="cep" th:errorClass="is-invalid">
 					<div class="invalid-feedback" th:errors="*{cep}">
 						Erros do nome do produto</div>
@@ -19,20 +19,24 @@
 				
 						
 				<div class="form-group">
-					<label for="rua">Rua</label> 
+					<label for="rua">Rua*</label> 
 					<input th:field="*{rua}" class="form-control" placeholder="rua">
 				</div>
 				<div class="form-group">
-					<label for="numero">Número</label> 
+					<label for="numero">Número*</label> 
 					<input th:field="*{numero}" class="form-control" placeholder="número">
 				</div>
 				<div class="form-group">
-					<label for="inquilino">Inquilino</label> 
+					<label for="inquilino">Inquilino*</label> 
 					<input th:field="*{inquilino}" class="form-control" placeholder="inquilino">
 				</div>
 				<div class="form-group">
+					<label for=linkImagem>Link da imagem</label> 
+					<input th:field="*{linkImagem}" class="form-control" placeholder="link de uma imagem (opcional)">
+				</div>
+				<div class="form-group">
 					
-					<label for="aluguel">Aluguel</label> 
+					<label for="aluguel">Aluguel*</label> 
 					<div class="input-group">
 						<span class="input-group-text" id="basic-addon1">R$</span>
 						<input th:field="*{aluguel}" class="form-control" placeholder="aluguel" th:errorClass="is-invalid">
