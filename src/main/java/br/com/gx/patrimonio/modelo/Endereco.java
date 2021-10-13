@@ -9,6 +9,15 @@ public class Endereco {
 	private Integer numero;
 	private String cep;
 
+	public Endereco() {
+	}
+	
+	public Endereco(String rua, String numero, String cep) {
+		this.rua = rua;
+		this.numero = Integer.valueOf(numero) ;
+		this.cep = cep;
+	}
+
 	public String getRua() {
 		return rua;
 	}
