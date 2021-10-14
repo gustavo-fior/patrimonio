@@ -12,7 +12,7 @@ import br.com.gx.patrimonio.modelo.StatusImovel;
 
 public class ImovelForm {
 
-	@NotNull
+	@NotNull(message = "Obrigatório")
 	@Size(max = 8)
 	private String cep;
 

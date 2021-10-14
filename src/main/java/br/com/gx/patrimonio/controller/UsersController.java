@@ -3,9 +3,11 @@ package br.com.gx.patrimonio.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -31,9 +33,8 @@ public class UsersController {
 	private UserRepository userRepository;
 
 	@PostMapping("/novo")
+	@Transactional
 	public ModelAndView novoImovel(@Valid ImovelForm form, BindingResult result) {
-
-		Imovel imovel = form.toImovel();
 
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		Optional<User> user = userRepository.findByUsername(username);
@@ -43,11 +44,13 @@ public class UsersController {
 			return new ModelAndView("/users/novo");
 		}
 
+		Imovel imovel = form.toImovel();
+
 		imovel.setUser(user.get());
 
 		imovelRepository.save(imovel);
 
-		return new ModelAndView("/users/home");
+		return new ModelAndView("redirect:/users/home");
 	}
 
 	@GetMapping("/novo")
@@ -58,18 +61,19 @@ public class UsersController {
 	}
 
 	@GetMapping("/home")
+	@Cacheable(value = "home")
 	public ModelAndView home() {
 
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-		//PageRequest pageable = PageRequest.of(0, 10);
-		
+		// PageRequest pageable = PageRequest.of(0, 10);
+
 		Optional<User> user = userRepository.findByUsername(username);
 		List<Imovel> imoveis = imovelRepository.findByUserOrderByAluguelDesc(user.get());
-		
+
 		ModelAndView mv = new ModelAndView("/users/home");
 		mv.addObject("imoveis", imoveis);
-		
+
 		return mv;
 
 	}

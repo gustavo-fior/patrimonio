@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="pt-br">
-<head th:replacement="~{base :: head}">
+<head th:replace="~{base :: head}">
 <title>GX</title>
 </head>
 
-<body>
+<body class="bg-dark">
 	<div class="container">
 
-		<div class="card" th:each="imovel : ${imoveis}">
+		<div class="card mt-3" th:each="imovel : ${imoveis}">
 
 			<div class="card-body">
 
@@ -20,31 +20,43 @@
 								<!-- Usando utitilitários (#numbers.formatCurrency(num)) do Thymeleaf para conversão para reais usando a localização do navegador -->
 								<!-- Alteranmos para formatar apenas o número com pontos a cada 3 números e 2 casas decimais com vírgula -->
 								<!-- Também fizemos uma validação caso o valor seja null -->
-								Aluguel: <span th:if="${imovel.aluguel != null}"
-									th:text="${'R$ ' + #numbers.formatDecimal(imovel.aluguel, 3, 'POINT', 2, 'COMMA')}"></span>
+								Aluguel: <b><span th:if="${imovel.aluguel != null}"
+									th:text="${'R$ ' + #numbers.formatDecimal(imovel.aluguel, 3, 'POINT', 2, 'COMMA')}"></span></b>
 							</div>
 							<div class="col-md-7">
 								<!-- Nessa conversão -->
-								Inquilino: <span th:if="${imovel.inquilino != null}"
-									th:text="${imovel.inquilino}"></span>
+								Inquilino: <b><span th:if="${imovel.inquilino != null}"
+									th:text="${imovel.inquilino}"></span></b>
 							</div>
 						</div>
 
-						<div class="mt-3 mb-3">Imovel:</div>
+						<div class="mt-3 mb-3">Detalhes:</div>
 						<div>
 							Rua: <input class="form-control mb-3"
 								th:value="${imovel.endereco.rua}" />
 						</div>
 
 						<div>
+							Numero: <input class="form-control mb-3"
+								th:value="${imovel.endereco.numero}" />
+						</div>
+						<div th:if="${imovel.endereco.cep != null}">
 							CEP: <input class="form-control mb-3"
 								th:value="${imovel.endereco.cep}" />
 						</div>
+
+						
 					</div>
 
 					<div class="col-12 col-sm-4">
 						<div>
-							<img class="img-thumbnail" th:src="${imovel.linkImagem}" />
+							<img class="img-thumbnail mb-3" th:src="${imovel.linkImagem}" />
+						</div>
+						<div>
+							<a th:href="@{'/imoveis/apagar/' + ${imovel.id}}"><button class="btn btn-danger" type="button">Apagar</button></a>
+						</div>
+						<div>
+							<button class="btn btn-primary"  type="button">Atualizar</button>
 						</div>
 					</div>
 				</div>
