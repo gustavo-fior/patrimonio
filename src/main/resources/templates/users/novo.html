@@ -7,28 +7,29 @@
 <body class="bg-dark">
 	<div class="container bg-dark">
 		<div class="card col d-flex justify-content-center">
+		
 			<form method="post" th:object="${imovelForm}" th:action="@{/users/novo}" class="card-body">
 				
 				<div class="form-group">
 					<label for="cep">CEP* (apenas números)</label> 
 					<input th:field="*{cep}" class="form-control" placeholder="cep" th:errorClass="is-invalid">
-					<div class="invalid-feedback" th:errors="*{cep}">
-						Erros no CEP</div>
-				</div>
-				
-				
+					<div class="invalid-feedback" th:errors="*{cep}"></div>
+				</div>				
 						
 				<div class="form-group">
 					<label for="rua">Rua*</label> 
-					<input th:field="*{rua}" class="form-control" placeholder="rua">
+					<input th:field="*{rua}" class="form-control" placeholder="rua" th:errorClass="is-invalid">
+					<div class="invalid-feedback" th:errors="*{rua}"></div>
 				</div>
 				<div class="form-group">
 					<label for="numero">Número*</label> 
-					<input th:field="*{numero}" class="form-control" placeholder="número">
+					<input th:field="*{numero}" class="form-control" placeholder="número" th:errorClass="is-invalid">
+					<div class="invalid-feedback" th:errors="*{numero}"></div>
 				</div>
 				<div class="form-group">
 					<label for="inquilino">Inquilino*</label> 
-					<input th:field="*{inquilino}" class="form-control" placeholder="inquilino">
+					<input th:field="*{inquilino}" class="form-control" placeholder="inquilino" th:errorClass="is-invalid">
+					<div class="invalid-feedback" th:errors="*{inquilino}"></div>
 				</div>
 				<div class="form-group">
 					<label for=linkImagem>Link da imagem</label> 
@@ -40,9 +41,9 @@
 					<div class="input-group">
 						<span class="input-group-text" id="basic-addon1">R$</span>
 						<input th:field="*{aluguel}" class="form-control" placeholder="aluguel" th:errorClass="is-invalid">
+						<div class="invalid-feedback" th:errors="*{aluguel}"></div>
 					</div>
-					<div class="invalid-feedback" th:errors="*{cep}">
-						Erros do nome do produto</div>
+					
 					
 				</div>
 				

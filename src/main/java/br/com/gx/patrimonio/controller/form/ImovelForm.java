@@ -1,8 +1,8 @@
-package br.com.gx.patrimonio.controller.dto;
+package br.com.gx.patrimonio.controller.form;
 
 import java.math.BigDecimal;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -12,22 +12,22 @@ import br.com.gx.patrimonio.modelo.StatusImovel;
 
 public class ImovelForm {
 
-	@NotNull(message = "Obrigatório")
-	@Size(max = 8)
+	@NotBlank(message = "Campo obrigatório")
+	@Size(max = 8, message = "Apenas números")
 	private String cep;
 
-	@NotNull
+	@NotBlank(message = "Campo obrigatório")
 	private String rua;
 
-	@NotNull
-	@Pattern(regexp = "^\\d+$")
+	@NotBlank(message = "Campo obrigatório")
+	@Pattern(regexp = "^\\d+$", message = "Apenas números")
 	private String numero;
 
-	@NotNull
+	@NotBlank(message = "Campo obrigatório")
 	private String inquilino;
 
-	@NotNull
-	@Pattern(regexp = "^\\d+(\\.\\d+{2})?$")
+	@NotBlank(message = "Campo obrigatório")
+	@Pattern(regexp = "^\\d+(\\.\\d+{2})?$", message = "Utilize o padrão 99999.99")
 	private String aluguel;
 
 	private String linkImagem;

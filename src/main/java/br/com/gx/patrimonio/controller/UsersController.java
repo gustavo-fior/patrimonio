@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.gx.patrimonio.controller.dto.ImovelForm;
+import br.com.gx.patrimonio.controller.form.ImovelForm;
 import br.com.gx.patrimonio.modelo.Imovel;
 import br.com.gx.patrimonio.modelo.User;
 import br.com.gx.patrimonio.repository.ImovelRepository;

@@ -6,21 +6,25 @@
 
 <body class="bg-dark ">
 	<div class="container bg-dark d-flex justify-content-center">
+
 		<div class="card ">
+			<div class="alert alert-danger" role="alert" th:if="${param.error}">
+				Usuário e/ou senha inválidos.</div>
 			<form method="post" th:action="@{/login}" class="card-body ">
 				<div class="form-group">
-					<label for="username">Nome de usuário</label> 
+					<label for="username">Nome de usuário</label>
 					<div class="input-group">
-						<span class="input-group-text" id="basic-addon1">@</span>
-						<input class="form-control" name="username">
+						<span class="input-group-text" id="basic-addon1">@</span> <input
+							class="form-control" name="username">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="password">Senha</label> 
-					<input class="form-control" name="password" type="password">
+					<label for="password">Senha</label> <input class="form-control"
+						name="password" type="password">
 				</div>
 				<button class="btn btn-primary" type="submit">Login</button>
-				<span class="ml-2">Ainda não criou sua conta? <a href="/signup">Cadastre-se</a></span>
+				<span class="ml-2">Ainda não criou sua conta? <a
+					href="/signup">Cadastre-se</a></span>
 			</form>
 		</div>
 	</div>

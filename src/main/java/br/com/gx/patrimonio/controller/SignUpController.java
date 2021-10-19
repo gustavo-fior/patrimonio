@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.gx.patrimonio.controller.dto.CadastroForm;
+import br.com.gx.patrimonio.controller.form.CadastroForm;
 import br.com.gx.patrimonio.controller.validacao.UsuarioValidacao;
 import br.com.gx.patrimonio.modelo.Perfil;
 import br.com.gx.patrimonio.modelo.User;

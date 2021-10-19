@@ -1,4 +1,4 @@
-package br.com.gx.patrimonio.controller.dto;
+package br.com.gx.patrimonio.controller.form;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
