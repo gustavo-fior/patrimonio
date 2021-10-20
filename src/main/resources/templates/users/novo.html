@@ -5,7 +5,10 @@
 </head>
 
 <body class="bg-dark">
-	<div class="container bg-dark">
+
+<div th:replace="~{base :: header('Novo imóvel')}"></div>
+
+	<div class="container bg-dark mt-3">
 		<div class="card col d-flex justify-content-center">
 		
 			<form method="post" th:object="${imovelForm}" th:action="@{/users/novo}" class="card-body">

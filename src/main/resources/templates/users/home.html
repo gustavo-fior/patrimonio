@@ -1,10 +1,14 @@
 <!doctype html>
 <html lang="pt-br">
 <head th:replace="~{base :: head}">
+<meta charset="UTF-8">
 <title>GX</title>
 </head>
 
 <body class="bg-dark">
+
+	<div th:replace="~{base :: header('Meus imÃ³veis')}"></div>
+	
 	<div class="container">
 
 		<div class="card mt-3" th:each="imovel : ${imoveis}">
@@ -17,14 +21,14 @@
 						<div class="row">
 
 							<div class="col-md-5">
-								<!-- Usando utitilitários (#numbers.formatCurrency(num)) do Thymeleaf para conversão para reais usando a localização do navegador -->
-								<!-- Alteranmos para formatar apenas o número com pontos a cada 3 números e 2 casas decimais com vírgula -->
-								<!-- Também fizemos uma validação caso o valor seja null -->
+								<!-- Usando utitilitÃ¡rios (#numbers.formatCurrency(num)) do Thymeleaf para conversÃ£o para reais usando a localizaÃ§Ã£o do navegador -->
+								<!-- Alteranmos para formatar apenas o nÃºmero com pontos a cada 3 nÃºmeros e 2 casas decimais com vÃ­rgula -->
+								<!-- TambÃ©m fizemos uma validaÃ§Ã£o caso o valor seja null -->
 								Aluguel: <b><span th:if="${imovel.aluguel != null}"
 									th:text="${'R$ ' + #numbers.formatDecimal(imovel.aluguel, 3, 'POINT', 2, 'COMMA')}"></span></b>
 							</div>
 							<div class="col-md-7">
-								<!-- Nessa conversão -->
+								<!-- Nessa conversÃ£o -->
 								Inquilino: <b><span th:if="${imovel.inquilino != null}"
 									th:text="${imovel.inquilino}"></span></b>
 							</div>
@@ -63,5 +67,6 @@
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>
