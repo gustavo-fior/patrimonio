@@ -57,10 +57,14 @@
 							<img class="img-thumbnail mb-3" th:src="${imovel.linkImagem}" />
 						</div>
 						<div>
-							<a th:href="@{'/imoveis/apagar/' + ${imovel.id}}"><button class="btn btn-danger" type="button">Apagar</button></a>
+							<form method="post" th:action="@{'/imoveis/apagar/' + ${imovel.id}}">
+								<button class="btn btn-danger" type="submit">Apagar</button>
+							</form>
 						</div>
 						<div>
-							<button class="btn btn-primary"  type="button">Atualizar</button>
+						
+						<a th:href="@{'/imoveis/atualizar/' + ${imovel.id}}"><button class="btn btn-primary mt-3"  type="submit">Atualizar</button></a>
+							
 						</div>
 					</div>
 				</div>

@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.com.gx.patrimonio.controller.form.ImovelForm;
+
 @Entity
 @Table(name = "imoveis")
 public class Imovel {
@@ -87,6 +89,19 @@ public class Imovel {
 
 	public void setLinkImagem(String linkImagem) {
 		this.linkImagem = linkImagem;
+	}
+
+	public Imovel atualizar(ImovelForm form) {
+
+		this.endereco.setCep(form.getCep());
+		this.endereco.setRua(form.getRua());
+		this.endereco.setNumero(Integer.valueOf(form.getNumero()));
+		this.setInquilino(form.getInquilino());
+		this.setAluguel(new BigDecimal(form.getAluguel()));
+		this.setLinkImagem(form.getLinkImagem());
+		
+		return this;
+
 	}
 
 }

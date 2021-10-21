@@ -6,12 +6,12 @@
 
 <body class="bg-dark">
 
-<div th:replace="~{base :: header('Novo imóvel')}"></div>
+<div th:replace="~{base :: header('Atualizar imóvel')}"></div>
 
 	<div class="container bg-dark mt-3">
 		<div class="card col d-flex justify-content-center">
 		
-			<form method="post" th:object="${imovelForm}" th:action="@{/users/novo}" class="card-body">
+			<form method="post" th:object="${imovelForm}" th:action="@{__${#httpServletRequest.requestURI}__}" class="card-body">
 				
 				<div class="form-group">
 					<label for="cep">CEP* (apenas números)</label> 
@@ -37,6 +37,7 @@
 				<div class="form-group">
 					<label for=linkImagem>Link da imagem</label> 
 					<input th:field="*{linkImagem}" class="form-control" placeholder="link de uma imagem (opcional)">
+					<div class="invalid-feedback" th:errors="*{linkImagem}"></div>
 				</div>
 				<div class="form-group">
 					
@@ -50,7 +51,7 @@
 					
 				</div>
 				
-				<button class="btn btn-primary" type="submit">Cadastrar</button>
+				<button class="btn btn-primary" type="submit">Atualizar</button>
 			</form>
 		</div>
 	</div>

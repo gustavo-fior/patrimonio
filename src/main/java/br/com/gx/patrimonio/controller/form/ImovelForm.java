@@ -30,7 +30,25 @@ public class ImovelForm {
 	@Pattern(regexp = "^\\d+(\\.\\d+{2})?$", message = "Utilize o padrão 99999.99")
 	private String aluguel;
 
+	@Size(max = 255, message = "Não pode ser maior que 255 caractéres")
 	private String linkImagem;
+	
+	public ImovelForm() {
+	}
+
+	public ImovelForm(@NotBlank(message = "Campo obrigatório") @Size(max = 8, message = "Apenas números") String cep,
+			@NotBlank(message = "Campo obrigatório") String rua,
+			@NotBlank(message = "Campo obrigatório") @Pattern(regexp = "^\\d+$", message = "Apenas números") String numero,
+			@NotBlank(message = "Campo obrigatório") String inquilino,
+			@NotBlank(message = "Campo obrigatório") @Pattern(regexp = "^\\d+(\\.\\d+{2})?$", message = "Utilize o padrão 99999.99") String aluguel,
+			String linkImagem) {
+		this.cep = cep;
+		this.rua = rua;
+		this.numero = numero;
+		this.inquilino = inquilino;
+		this.aluguel = aluguel;
+		this.linkImagem = linkImagem;
+	}
 
 	public String getRua() {
 		return rua;
@@ -94,6 +112,19 @@ public class ImovelForm {
 
 		return imovel;
 
+	}
+	
+	public ImovelForm toImovelForm(Imovel imovel) {
+		
+		ImovelForm form = new ImovelForm(imovel.getEndereco().getCep(),
+				imovel.getEndereco().getRua(),
+				imovel.getEndereco().getNumero().toString(),
+				imovel.getInquilino(),
+				imovel.getAluguel().toString(),
+				imovel.getLinkImagem());
+		
+		return form;
+		
 	}
 
 }
