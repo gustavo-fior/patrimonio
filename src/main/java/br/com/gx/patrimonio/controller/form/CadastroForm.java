@@ -2,6 +2,7 @@ package br.com.gx.patrimonio.controller.form;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -9,14 +10,17 @@ import br.com.gx.patrimonio.modelo.User;
 
 public class CadastroForm {
 
-	@NotBlank
+	@NotBlank(message = "Campo obrigatório")
+	@Size(min = 4, max = 20, message = "O nome de usuário deve ter no mínimo 4 caractéres")
 	private String username;
 	
-	@NotBlank
-	@Email
+	
+	@NotBlank(message = "Campo obrigatório")
+	@Email(message = "Siga o padrão joao@email.com")
 	private String email;
 	
-	@NotBlank
+	@NotBlank(message = "Campo obrigatório")
+	@Size(min = 8, message = "A senha deve ter no mínimo 8 caractéres")
 	private String password;
 
 	public void setUsername(String username) {
@@ -51,6 +55,7 @@ public class CadastroForm {
 		user.setEmail(this.email);
 		user.setUsername(this.username);
 		user.setPassword(encoder.encode(this.password));
+		user.setEnabled(true);
 		
 		return user;
 		

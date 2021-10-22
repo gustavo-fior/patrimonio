@@ -8,21 +8,26 @@
 	<div class="container bg-dark">
 		<div class="card col d-flex justify-content-center">
 			<form method="post" th:object="${cadastroForm}" th:action="@{/signup}" class="card-body">
+				<div class="alert alert-danger" role="alert" th:if="${unique}" >
+					Usuário e/ou email já são cadastrados.</div>
 				<div class="form-group">
 					
 						<label for="username">Nome de Usuário</label> 
 					<div class="input-group">
 						<span class="input-group-text" id="basic-addon1">@</span>
-						<input th:field="*{username}" class="form-control" placeholder="usuário">
+						<input th:field="*{username}" class="form-control" placeholder="usuário" th:errorClass="is-invalid">
+						<div class="invalid-feedback" th:errors="*{username}"></div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="username">Email</label> 
-					<input th:field="*{email}" class="form-control" placeholder="email">
+					<input th:field="*{email}" class="form-control" placeholder="email" th:errorClass="is-invalid">
+					<div class="invalid-feedback" th:errors="*{email}"></div>
 				</div>
 				<div class="form-group">
 					<label for="password">Senha</label> 
-					<input th:field="*{password}" class="form-control" placeholder="senha" type="password">
+					<input th:field="*{password}" class="form-control" placeholder="senha" type="password" th:errorClass="is-invalid">
+					<div class="invalid-feedback" th:errors="*{password}"></div>
 				</div>
 				<button class="btn btn-primary" type="submit">Cadastrar</button>
 				<span class="ml-2">Já tem uma conta? <a href="/login">Faça login!</a></span>

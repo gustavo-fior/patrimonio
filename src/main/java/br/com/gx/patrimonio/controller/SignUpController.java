@@ -23,7 +23,7 @@ public class SignUpController {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private PerfilRepository perfilRepository;
 
@@ -39,21 +39,30 @@ public class SignUpController {
 	public ModelAndView signUpCadastro(@Valid CadastroForm form, BindingResult result) {
 
 		Perfil userPerfil = perfilRepository.findByNome("ROLE_USER");
-		
+
 		User user = form.toUser(form);
 		user.adicionarPerfil(userPerfil);
 
-		if (!result.hasErrors() && usuarioValidacao.isEmailUnico(user) && usuarioValidacao.isUsernameUnico(user)) {
+		ModelAndView mv = new ModelAndView("/signup");
+
+		// Melhorar essa lógica
+		if (!usuarioValidacao.isEmailUnico(user) || !usuarioValidacao.isUsernameUnico(user)) {
+
+			mv.addObject("unique", true);
+			return mv;
+
+		} else if (result.hasErrors()) {
+
+			return mv;
+
+		} else {
 
 			userRepository.save(user);
-			
+
 			usuarioValidacao.autenticar(form.getUsername(), form.getPassword());
-			
+
 			return new ModelAndView("redirect:/users/home");
-
 		}
-
-		return new ModelAndView("/signup");
 
 	}
 
