@@ -43,26 +43,17 @@ public class SignUpController {
 		User user = form.toUser(form);
 		user.adicionarPerfil(userPerfil);
 
-		ModelAndView mv = new ModelAndView("/signup");
+		ModelAndView mv = usuarioValidacao.validarSignUp(user, result);
 
-		// Melhorar essa lógica
-		if (!usuarioValidacao.isEmailUnico(user) || !usuarioValidacao.isUsernameUnico(user)) {
-
-			mv.addObject("unique", true);
+		// Se ocorrer erro na validação
+		if (mv.getViewName().equalsIgnoreCase("/signup"))
 			return mv;
 
-		} else if (result.hasErrors()) {
+		userRepository.save(user);
 
-			return mv;
+		usuarioValidacao.autenticar(form.getUsername(), form.getPassword());
 
-		} else {
-
-			userRepository.save(user);
-
-			usuarioValidacao.autenticar(form.getUsername(), form.getPassword());
-
-			return new ModelAndView("redirect:/users/home");
-		}
+		return new ModelAndView("redirect:/users/home");
 
 	}
 

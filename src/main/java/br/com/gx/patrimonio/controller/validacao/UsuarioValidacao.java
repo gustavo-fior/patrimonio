@@ -9,20 +9,22 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.gx.patrimonio.modelo.User;
 import br.com.gx.patrimonio.repository.UserRepository;
 
 @Service
 public class UsuarioValidacao {
-	
+
 	@Autowired
 	private AuthenticationManager authManager;
 
 	@Autowired
 	private UserRepository userRepository;
 
-	public boolean isEmailUnico(User user) {
+	private boolean isEmailUnico(User user) {
 
 		Optional<User> userEmail = userRepository.findByEmail(user.getEmail());
 
@@ -34,7 +36,7 @@ public class UsuarioValidacao {
 
 	}
 
-	public boolean isUsernameUnico(User user) {
+	private boolean isUsernameUnico(User user) {
 
 		Optional<User> userUsername = userRepository.findByUsername(user.getUsername());
 
@@ -52,7 +54,21 @@ public class UsuarioValidacao {
 		Authentication auth = authManager.authenticate(authReq);
 		SecurityContext sc = SecurityContextHolder.getContext();
 		sc.setAuthentication(auth);
-		
+
+	}
+
+	public ModelAndView validarSignUp(User user, BindingResult result) {
+
+		ModelAndView mv = new ModelAndView("/signup");
+
+		if (!isEmailUnico(user) || !isUsernameUnico(user)) {
+
+			mv.addObject("unique", true);
+
+		}
+
+		return mv;
+
 	}
 
 }
