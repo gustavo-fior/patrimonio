@@ -24,30 +24,6 @@ public class UsuarioValidacao {
 	@Autowired
 	private UserRepository userRepository;
 
-	private boolean isEmailUnico(User user) {
-
-		Optional<User> userEmail = userRepository.findByEmail(user.getEmail());
-
-		if (userEmail.isPresent()) {
-			return false;
-		}
-
-		return true;
-
-	}
-
-	private boolean isUsernameUnico(User user) {
-
-		Optional<User> userUsername = userRepository.findByUsername(user.getUsername());
-
-		if (userUsername.isPresent()) {
-			return false;
-		}
-
-		return true;
-
-	}
-
 	public void autenticar(String username, String password) {
 
 		UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(username, password);
@@ -68,7 +44,28 @@ public class UsuarioValidacao {
 		}
 
 		return mv;
+	}
 
+	private boolean isEmailUnico(User user) {
+
+		Optional<User> userEmail = userRepository.findByEmail(user.getEmail());
+
+		if (userEmail.isPresent()) {
+			return false;
+		}
+
+		return true;
+	}
+
+	private boolean isUsernameUnico(User user) {
+
+		Optional<User> userUsername = userRepository.findByUsername(user.getUsername());
+
+		if (userUsername.isPresent()) {
+			return false;
+		}
+
+		return true;
 	}
 
 }

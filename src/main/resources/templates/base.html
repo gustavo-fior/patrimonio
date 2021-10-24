@@ -9,7 +9,7 @@
 	rel="stylesheet">
 <style>
 .logo-container {
-	background-color: #47bcff;
+	background-color: #0520a3;
 	color: white;
 }
 
@@ -29,12 +29,20 @@
 	text-align: center;
 }
 
+.blue {
+	background-color: #0520a3;
+}
+
 .content{
-	margin: 15%;
+	margin: 30% 20% 20% 20%;
 }
 
 .content-novo{
-	margin: 5%, 20%, 20%, 20%;
+	margin: 3% 20% 20% 20%;
+}
+
+.black {
+	background-color: #121212;
 }
 </style>
 <script src="https://kit.fontawesome.com/f4a1222d21.js" crossorigin="anonymous"></script>
@@ -59,7 +67,7 @@
 </div>
 
 <div th:fragment="floatingButton">
-	<a href="/imoveis/novo" class="float"><button class="btn btn-primary btn-lg rounded-circle"><i class="fas fa-plus"></i></button>
+	<a href="/imoveis/novo" class="float"><button class="btn btn-primary btn-lg rounded-circle border-0 blue"><i class="fas fa-plus"></i></button>
 	</a>
 </div>
 
