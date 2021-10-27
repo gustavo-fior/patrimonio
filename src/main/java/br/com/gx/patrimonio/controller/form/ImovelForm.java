@@ -32,7 +32,10 @@ public class ImovelForm {
 
 	@Size(max = 255, message = "Não pode ser maior que 255 caractéres")
 	private String linkImagem;
-	
+
+	// Validacao
+	private Integer status;
+
 	public ImovelForm() {
 	}
 
@@ -41,13 +44,14 @@ public class ImovelForm {
 			@NotBlank(message = "Campo obrigatório") @Pattern(regexp = "^\\d+$", message = "Apenas números") String numero,
 			@NotBlank(message = "Campo obrigatório") String inquilino,
 			@NotBlank(message = "Campo obrigatório") @Pattern(regexp = "^\\d+(\\.\\d+{2})?$", message = "Utilize o padrão 99999.99") String aluguel,
-			String linkImagem) {
+			@Size(max = 255, message = "Não pode ser maior que 255 caractéres") String linkImagem, Integer status) {
 		this.cep = cep;
 		this.rua = rua;
 		this.numero = numero;
 		this.inquilino = inquilino;
 		this.aluguel = aluguel;
 		this.linkImagem = linkImagem;
+		this.status = status;
 	}
 
 	public String getRua() {
@@ -97,6 +101,14 @@ public class ImovelForm {
 	public void setLinkImagem(String linkImagem) {
 		this.linkImagem = linkImagem;
 	}
+	
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
 	public Imovel toImovel() {
 
@@ -106,14 +118,14 @@ public class ImovelForm {
 
 		imovel.setAluguel(new BigDecimal(this.aluguel));
 		imovel.setInquilino(this.inquilino);
-		imovel.setStatus(StatusImovel.ALUGADO);
+		imovel.setStatus(StatusImovel.valueOf(Integer.valueOf(this.status)));
 		imovel.setEndereco(endereco);
 		imovel.setLinkImagem(this.linkImagem);
 
 		return imovel;
 
 	}
-	
+
 	public ImovelForm toImovelForm(Imovel imovel) {
 		
 		ImovelForm form = new ImovelForm(imovel.getEndereco().getCep(),
@@ -121,7 +133,9 @@ public class ImovelForm {
 				imovel.getEndereco().getNumero().toString(),
 				imovel.getInquilino(),
 				imovel.getAluguel().toString(),
-				imovel.getLinkImagem());
+				imovel.getLinkImagem(),
+				imovel.getStatus().getValor()
+				);
 		
 		return form;
 		

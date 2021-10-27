@@ -6,31 +6,35 @@
 
 <body class="bg-dark">
 
-<div th:replace="~{base :: header('Novo imóvel')}"></div>
+	<div th:replace="~{base :: header('Novo imóvel')}"></div>
 
 	<div class="container d-flex justify-content-center bg-dark mt-3">
 		<div class="card col d-flex justify-content-center content-novo w-25">
-		
-			<form method="post" th:object="${imovelForm}" th:action="@{/imoveis/novo}" class="card-body">
-				
+
+			<form method="post" th:object="${imovelForm}"
+				th:action="@{/imoveis/novo}" class="card-body">
+
 				<div class="form-group">
-					<label for="cep">CEP* (apenas números)</label> 
-					<input th:field="*{cep}" class="form-control" placeholder="cep" th:errorClass="is-invalid">
+					<label for="cep">CEP* (apenas números)</label> <input
+						th:field="*{cep}" class="form-control" placeholder="cep"
+						th:errorClass="is-invalid">
 					<div class="invalid-feedback" th:errors="*{cep}"></div>
-				</div>				
-				
+				</div>
+
 				<div class="row">
 					<div class="col-md-8">
 						<div class="form-group">
-							<label for="rua">Rua*</label> 
-							<input th:field="*{rua}" class="form-control" placeholder="rua" th:errorClass="is-invalid">
+							<label for="rua">Rua*</label> <input th:field="*{rua}"
+								class="form-control" placeholder="rua"
+								th:errorClass="is-invalid">
 							<div class="invalid-feedback" th:errors="*{rua}"></div>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="numero">Número*</label> 
-							<input th:field="*{numero}" class="form-control" placeholder="número" th:errorClass="is-invalid">
+							<label for="numero">Número*</label> <input th:field="*{numero}"
+								class="form-control" placeholder="número"
+								th:errorClass="is-invalid">
 							<div class="invalid-feedback" th:errors="*{numero}"></div>
 						</div>
 					</div>
@@ -38,31 +42,47 @@
 				<div class="row">
 					<div class="col-md-8">
 						<div class="form-group">
-							<label for="inquilino">Inquilino*</label> 
-							<input th:field="*{inquilino}" class="form-control" placeholder="inquilino" th:errorClass="is-invalid">
+							<label for="inquilino">Inquilino*</label> <input
+								th:field="*{inquilino}" class="form-control"
+								placeholder="inquilino" th:errorClass="is-invalid">
 							<div class="invalid-feedback" th:errors="*{inquilino}"></div>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-					
-						<label for="aluguel">Aluguel*</label> 
+
+							<label for="aluguel">Aluguel*</label>
 							<div class="input-group">
-								<span class="input-group-text" id="basic-addon1">R$</span>
-								<input th:field="*{aluguel}" class="form-control" placeholder="aluguel" th:errorClass="is-invalid">
+								<span class="input-group-text" id="basic-addon1">R$</span> <input
+									th:field="*{aluguel}" class="form-control"
+									placeholder="aluguel" th:errorClass="is-invalid">
 								<div class="invalid-feedback" th:errors="*{aluguel}"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-				
 				<div class="form-group">
-					<label for=linkImagem>Link da imagem</label> 
-					<input th:field="*{linkImagem}" class="form-control" placeholder="link de uma imagem (opcional)">
+					<label for=linkImagem>Link da imagem</label> <input
+						th:field="*{linkImagem}" class="form-control"
+						placeholder="link de uma imagem (opcional)">
 					<div class="invalid-feedback" th:errors="*{linkImagem}"></div>
 				</div>
-				
-				
+				<div class="form-group">
+					<label for=status>Status do imovel:</label>
+					<div class="btn-group btn-group-toggle ml-3" data-toggle="buttons">
+						<label class="btn btn-secondary active"> 
+							<input th:field="*{status}" value="1" type="radio" name="options" id="option1" checked> Alugado 
+						</label> 
+						<label class="btn btn-secondary"> 
+							<input th:field="*{status}" value="2" type="radio" name="options" id="option2"> Vago
+						</label> 
+						<label class="btn btn-secondary"> 
+							<input th:field="*{status}" value="3" type="radio" name="options" id="option3"> Em construcao
+						</label>
+					</div>
+					<div class="invalid-feedback" th:errors="*{status}"></div>
+				</div>
+
 				<button class="btn btn-primary" type="submit">Cadastrar</button>
 			</form>
 		</div>

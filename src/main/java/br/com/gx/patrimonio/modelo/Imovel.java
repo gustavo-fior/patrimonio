@@ -99,6 +99,7 @@ public class Imovel {
 		this.setInquilino(form.getInquilino());
 		this.setAluguel(new BigDecimal(form.getAluguel()));
 		this.setLinkImagem(form.getLinkImagem());
+		this.setStatus(StatusImovel.valueOf(form.getStatus()));
 		
 		return this;
 

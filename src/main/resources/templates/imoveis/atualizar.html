@@ -70,6 +70,24 @@
 					<div class="invalid-feedback" th:errors="*{linkImagem}"></div>
 				</div>
 
+				<div class="form-group">
+					<label for=status>Status do imovel:</label>
+					<div class="btn-group btn-group-toggle ml-3" data-toggle="buttons">
+						<label class="btn btn-secondary active"> <input
+							th:field="*{status}" th:value="1" type="radio" id="option1">
+							Alugado
+						</label> <label class="btn btn-secondary"> <input
+							th:field="*{status}" th:value="2" type="radio" id="option2">
+							Vago
+						</label> <label class="btn btn-secondary"> <input
+							th:field="*{status}" th:value="3" type="radio" id="option3">
+							Construindo
+						</label>
+					</div>
+					
+					<div class="invalid-feedback" th:errors="*{status}"></div>
+				</div>
+
 				<button class="btn btn-primary" type="submit">Atualizar</button>
 			</form>
 		</div>
