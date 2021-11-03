@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.gx.patrimonio.controller.form.ImovelForm;
 
 @Entity
@@ -24,6 +26,7 @@ public class Imovel {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
 	private User user;
 
 	@Embedded

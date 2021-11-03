@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.gx.patrimonio.modelo.Imovel;
+import br.com.gx.patrimonio.modelo.StatusImovel;
 import br.com.gx.patrimonio.modelo.User;
 
 @Repository
@@ -16,5 +17,7 @@ public interface ImovelRepository extends JpaRepository<Imovel, Long>{
 	List<Imovel> findByUsername(String username);
 	
 	List<Imovel> findByUserOrderByAluguelDesc(User user);
+	
+	List<Imovel> findByStatus(StatusImovel status);
 	
 }
