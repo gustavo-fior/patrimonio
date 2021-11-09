@@ -20,17 +20,21 @@
 					<div class="col-12 col-sm-8 mb-3">
 						<div class="row">
 
-							<div class="col-md-5">
+							<div class="col-md-4">
 								<!-- Usando utitilitários (#numbers.formatCurrency(num)) do Thymeleaf para conversão para reais usando a localização do navegador -->
 								<!-- Alteranmos para formatar apenas o número com pontos a cada 3 números e 2 casas decimais com vírgula -->
 								<!-- Também fizemos uma validação caso o valor seja null -->
 								Aluguel: <b><span th:if="${imovel.aluguel != null}"
 									th:text="${'R$ ' + #numbers.formatDecimal(imovel.aluguel, 3, 'POINT', 2, 'COMMA')}"></span></b>
 							</div>
-							<div class="col-md-7">
+							<div class="col-md-4">
 								<!-- Nessa conversão -->
 								Inquilino: <b><span th:if="${imovel.inquilino != null}"
 									th:text="${imovel.inquilino}"></span></b>
+							</div>
+							<div class="col-md-4">
+								Status: <b><span th:if="${imovel.status != null}"
+									th:text="${imovel.status}"></span></b>
 							</div>
 						</div>
 
