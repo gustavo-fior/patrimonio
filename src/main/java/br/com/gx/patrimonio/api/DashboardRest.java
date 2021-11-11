@@ -19,7 +19,6 @@ public class DashboardRest {
 	@Autowired
 	private UserRepository userRepository;
 
-	// Mudar o retorno do metodo
 	@GetMapping
 	public DashboardDTO dashboard() {
 

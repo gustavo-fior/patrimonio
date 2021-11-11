@@ -39,16 +39,16 @@
 						</div>
 
 						<div class="mt-3">
-							Rua: <input class="form-control mb-3"
+							Rua: <input disabled="disabled" class="form-control mb-3"
 								th:value="${imovel.endereco.rua}" />
 						</div>
 
 						<div>
-							Numero: <input class="form-control mb-3"
+							Numero: <input disabled="disabled" class="form-control mb-3"
 								th:value="${imovel.endereco.numero}" />
 						</div>
 						<div th:if="${imovel.endereco.cep != null}">
-							CEP: <input class="form-control"
+							CEP: <input disabled="disabled" class="form-control"
 								th:value="${imovel.endereco.cep}" />
 						</div>
 
